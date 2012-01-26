@@ -1,9 +1,11 @@
 class TicketsController < ApplicationController
-  respond_to :html, :json
+  respond_to :json
   
   def index
     @tickets = Ticket.all
-    respond_with @tickets
+    respond_to do |format|
+      format.html
+      format.json { render :json => @tickets }
   end
 
   def show

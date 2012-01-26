@@ -3,9 +3,7 @@ class TicketsController < ApplicationController
   
   def index
     @tickets = Ticket.all
-    respond_to do |format|
-      format.html
-      format.json { render :json => @tickets }
+    respond_with @tickets
   end
 
   def show

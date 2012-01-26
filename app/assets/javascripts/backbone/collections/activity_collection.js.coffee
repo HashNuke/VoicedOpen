@@ -1,2 +1,0 @@
-class ActivityCollection extends Backbone.Collection
-window.ActivityCollection = ActivityCollection

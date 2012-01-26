@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/Bushido/devise_cas_authenticatable.git
+  revision: 71fc4540b06d229c0a1e5cbede48be830af9206f
+  specs:
+    devise_bushido_authenticatable (1.0.0)
+      devise (>= 1.0.6)
+      rubycas-client (>= 2.2.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -130,6 +138,8 @@ GEM
       activesupport (~> 3.0)
       railties (~> 3.0)
       rspec (~> 2.7.0)
+    rubycas-client (2.3.8)
+      activesupport
     rubyzip (0.9.5)
     sass (3.1.12)
     sass-rails (3.1.5)
@@ -171,6 +181,7 @@ DEPENDENCIES
   coffee-rails (~> 3.1.1)
   compass (= 0.12.alpha.4)
   devise
+  devise_bushido_authenticatable!
   factory_girl_rails
   haml-rails
   jquery-rails

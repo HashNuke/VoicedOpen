@@ -1,0 +1,1 @@
+window.todo_list = new ListItemCollection()

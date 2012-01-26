@@ -7,6 +7,9 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.rememberable
       t.trackable
 
+      t.string :first_name
+      t.string :last_name
+      
       # For single table inheritance (Admin < User)
       t.string :type
 

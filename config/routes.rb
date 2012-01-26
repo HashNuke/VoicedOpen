@@ -5,7 +5,7 @@ VoicedOpen::Application.routes.draw do
   root :to => "main#index"
   
   resources :tickets, :except => [:edit] do
-    resources :activities, :except => [:edit]
+    resources :activities, :except => [:edit, :show]
   end
   
   

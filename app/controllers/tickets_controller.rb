@@ -30,7 +30,9 @@ class TicketsController < ApplicationController
       respond_with @ticket
     else
       respond_to do |format|
-        format.json { render :json => @ticket.errors, :status => :unprocessable_entity }
+        format.json do
+          render :json => @ticket.errors, :status => :unprocessable_entity
+        end
       end
     end
   end

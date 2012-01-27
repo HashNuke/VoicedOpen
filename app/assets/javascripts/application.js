@@ -14,16 +14,15 @@
 //= require jquery_ujs
 //= require lib/underscore-min
 //= require lib/backbone-min
+//= require ./app/boot
+//= require ./app/router
+//= require_tree ./app/models/
+//= require_tree ./app/controllers/
+//= require_tree ./app/collections/
+//= require_tree ./app/templates/
+//= require_tree ./app/views/
 
-//= require ./backbone/boot
-//= require ./backbone/router
-//= require_tree ./backbone/models/
-//= require_tree ./backbone/controllers/
-//= require_tree ./backbone/collections/
-//= require_tree ./backbone/templates/
-//= require_tree ./backbone/views/
-
-//= require ./backbone/init
+//= require ./app/init
 
 //= require_self
 

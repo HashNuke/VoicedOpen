@@ -16,10 +16,10 @@
 //= require lib/backbone-min
 //= require ./app/boot
 //= require ./app/router
+//= require ./app/templates
 //= require_tree ./app/models/
 //= require_tree ./app/controllers/
 //= require_tree ./app/collections/
-//= require_tree ./app/templates/
 //= require_tree ./app/views/
 
 //= require ./app/init

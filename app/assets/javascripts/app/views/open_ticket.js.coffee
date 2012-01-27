@@ -1,5 +1,5 @@
 class App.Views.OpenTicket extends Backbone.View
-  tag: "div"
+  tag      : "div"
   className: "open-ticket"
 
   initialize: ()->

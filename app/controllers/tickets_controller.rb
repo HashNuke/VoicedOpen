@@ -2,7 +2,9 @@ class TicketsController < ApplicationController
   respond_to :json
   
   def index
-    @tickets = Ticket.all
+    @tickets = Ticket.where(:status => params[:status]) if params[:status] == "closed" or params[:status] == "open"
+
+    @tickets ||= Ticket.all
     respond_with @tickets
   end
 

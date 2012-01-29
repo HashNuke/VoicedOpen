@@ -1,0 +1,24 @@
+@import "lib/bootstrap";
+
+.user-nav {
+  @extend .offset4;
+  @extend .span3;
+  ul {
+    list-style: none;
+    li {
+      display: inline;
+    }
+  }
+}
+
+.main-content {
+  @extend .row;
+}
+
+.ticket-list {
+  @extend .row;
+}
+
+.open-ticket {
+  @extend .span10;
+}

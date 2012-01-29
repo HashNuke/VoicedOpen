@@ -11,6 +11,9 @@ gem 'devise'
 gem 'devise_bushido_authenticatable', :git => 'git://github.com/Bushido/devise_cas_authenticatable.git'
 gem 'cancan'
 
+gem 'zocial'
+gem 'bootstrap-sass'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

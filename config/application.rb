@@ -54,7 +54,6 @@ module VoicedOpen
     config.active_record.include_root_in_json = false
 
     config.generators do |g|
-      g.stylesheet_engine :sass
       g.template_engine :haml
       g.test_framework :rspec, :fixture => false
     end

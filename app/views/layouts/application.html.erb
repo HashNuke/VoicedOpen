@@ -11,9 +11,34 @@
 </head>
 <body>
 
-<div class="container">
-  <%= yield %>
-</div>
+  <div class="container">
+    <div class="row">
+      <div class="span8">
+        <a class="brand" href="#">VoicedOpen</a>
+      </div>
+      
+      <div class="user-nav offset4 span4">
+        <ul>
+          <%- if admin_signed_in? %>
+            <li><%= link_to current_admin.email, edit_user_registration_path %></li>
+            <li><%= link_to "Logout", destroy_admin_session_path, :method => :delete %></li>                             <%- elsif user_signed_in? %>
+            <li><%= link_to current_user.email, edit_user_registration_path %></li>
+            <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+          <%- else %>
+            <li><%= link_to "Login as user", new_user_session_path %></li>
+            <li><%= link_to "Login as admin", new_admin_session_path %></li>
+          <%-end %>
+        </ul>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <%= yield %>
+    </div>
+  </div>
+
+
+
 
 </body>
 </html>

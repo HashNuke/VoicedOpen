@@ -24,7 +24,3 @@
 
 //= require ./app/init
 
-//= require_self
-
-
-

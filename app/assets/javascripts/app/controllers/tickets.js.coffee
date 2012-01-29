@@ -6,7 +6,7 @@ class App.Controllers.Tickets
       data: $.param({status: "open"}),
       success: ()->
         ticket_list = new App.Views.TicketList({collection: tickets})
-        $(".container").html ticket_list.render().el
+        $(".main-content").html ticket_list.render().el
     })
 
 

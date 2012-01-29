@@ -20,7 +20,8 @@ header {
 
 .sidebar {
   @include columns(4);
-  background: #666;
+  @include border-radius(4px);
+  background: #DDD;
   float:right;
 }
 

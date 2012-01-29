@@ -11,7 +11,6 @@ class App.Views.TicketList extends Backbone.View
     $ticket_list = $(@el)
     @collection.each (ticket)=>
       ticket_view = null;
-      console.log @open_ticket_template
       if ticket.get("status") == "closed"
         ticket_view = @closed_ticket_template(ticket.toJSON())
       else

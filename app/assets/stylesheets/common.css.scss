@@ -1,8 +1,7 @@
-@import "lib/bootstrap";
+@import "bootstrap";
 
 .user-nav {
-  @extend .offset4;
-  @extend .span3;
+  @include columns(4);
   ul {
     list-style: none;
     li {
@@ -11,14 +10,32 @@
   }
 }
 
-.main-content {
-  @extend .row;
+header {
+  @include fixed-container();
+}
+
+.main {
+  @include columns(12);
+}
+
+.sidebar {
+  @include columns(4);
+  background: #666;
+  float:right;
+}
+
+.ticket-nav {
+  ul {
+    list-style: none;
+    li {
+      display: inline;
+    }
+  }
 }
 
 .ticket-list {
-  @extend .row;
+  float: left;
 }
 
 .open-ticket {
-  @extend .span10;
 }

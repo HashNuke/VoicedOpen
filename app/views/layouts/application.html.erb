@@ -11,7 +11,7 @@
 </head>
 <body>
 
-  <div class="container">
+  <header>
     <div class="row">
       <div class="span8">
         <a class="brand" href="#">VoicedOpen</a>
@@ -31,13 +31,29 @@
         </ul>
       </div>
     </div>
+  </header>
 
-    <div class="main-content">
+  
+  <div class="container">
+    <div class="ticket-nav">
+      <ul class="pills">
+        <li class="open-tickets active">
+          <a href="#open-tickets">Open</a>
+        </li>
+        <li class="closed-tickets">
+          <a href="#closed-tickets">Closed</a>
+        </li>
+      </ul>
+    </div>
+      
+    <div class="main">
       <%= yield %>
     </div>
+  
+    <div class="sidebar">
+      Here goes the site's sidebar
+    </div>
   </div>
-
-
 
 
 </body>

@@ -4,15 +4,18 @@ class App.Views.TicketList extends Backbone.View
 
   initialize: ()->
     _.bindAll(@, "render")
+    @open_ticket_template   = _.template App.Templates.OpenTicket
+    @closed_ticket_template = _.template App.Templates.ClosedTicket
 
   render: ()->
     $ticket_list = $(@el)
-    @collection.each (ticket)->
+    @collection.each (ticket)=>
       ticket_view = null;
+      console.log @open_ticket_template
       if ticket.get("status") == "closed"
-        ticket_view = new App.views.ClosedTicket({model: ticket, collection: @collection})
+        ticket_view = @closed_ticket_template(ticket.toJSON())
       else
-        ticket_view = new App.Views.OpenTicket({model: ticket, collection: @collection})
+        ticket_view = @open_ticket_template(ticket.toJSON())
 
-      $ticket_list.append(ticket_view.render().el)
+      $ticket_list.append(ticket_view)
     @

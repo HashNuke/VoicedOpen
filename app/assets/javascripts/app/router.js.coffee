@@ -1,4 +1,8 @@
 class App.Router extends Backbone.Router
+
+  initialize: ()->
+    @view_handler = new App.ViewHandler()
+
   routes:
     ""                      : "open_tickets"
     "tickets/search/:term"  : "search"
@@ -14,19 +18,20 @@ class App.Router extends Backbone.Router
 
 
   new_ticket: ()->
-    App.Controllers.Tickets.new_ticket()
+    App.Controllers.Tickets.new_ticket(@view_handler)
 
   open_tickets: ()->
+    console.log "open tickets show"
     if arguments.length > 0
-      App.Controllers.Tickets.open_tickets(arguments.first)
+      App.Controllers.Tickets.open_tickets(@view_handler, arguments.first)
     else
-      App.Controllers.Tickets.open_tickets()
+      App.Controllers.Tickets.open_tickets(@view_handler)
 
   closed_tickets: ()->
     if arguments.length > 0
-      App.Controllers.Tickets.closed_tickets(arguments.first)
+      App.Controllers.Tickets.closed_tickets(@view_handler, arguments.first)
     else
-      App.Controllers.Tickets.closed_tickets()
+      App.Controllers.Tickets.closed_tickets(@view_handler)
 
   show_ticket: (ticket_id)->
-    App.Controllers.Tickets.show_ticket(ticket_id)
+    App.Controllers.Tickets.show_ticket(@view_handler, ticket_id)

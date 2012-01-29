@@ -15,6 +15,7 @@
 //= require lib/underscore-min
 //= require lib/backbone-min
 //= require ./app/boot
+//= require ./app/view_handler
 //= require ./app/router
 //= require ./app/templates
 //= require_tree ./app/models/

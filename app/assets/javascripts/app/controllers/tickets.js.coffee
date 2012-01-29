@@ -1,21 +1,24 @@
 class App.Controllers.Tickets
 
-  @open_tickets: ()->
+  @open_tickets: (view_handler)->
     tickets = new App.Collections.Tickets()
     tickets.fetch({
       data: $.param({status: "open"}),
       success: ()->
         ticket_list = new App.Views.TicketList({collection: tickets})
-        $(".main").prepend ticket_list.render().el
+        view_handler.show_view ticket_list
     })
 
 
-  @closed_tickets: ()->
+  @closed_tickets: (view_handler)->
     tickets = new App.Collections.Tickets()
     tickets.fetch({
-      data: $.param({status: "closed"})
+      data: $.param({status: "closed"}),
+      success: ()->
+        ticket_list = new App.Views.TicketList({collection: tickets})
+        view_handler.show_view ticket_list
     })
 
 
-  @search_tickets: (term)->
+  @search_tickets: (view_handler, term)->
     console.log "search tickets for #{term}"

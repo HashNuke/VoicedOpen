@@ -40,14 +40,12 @@ App.Templates =
 
   Search: "<input type='text' class='search'/>"
   Ticket: """
-    <div class='ticket'>
-      <div class='title'>{{ title }}</div>
-      <div class='meta'>
-        <span class='user'>{{ user_name }}</span> at <span class='created_at'>{{ posted_at }}</span>
-      </div>
-      <div class='message'>{{ message }}</div>
-      <div class='activities'></div>
+    <div class='title'>{{ title }}</div>
+    <div class='meta'>
+      <span class='user'>{{ user_name }}</span> at <span class='created_at'>{{ posted_at }}</span>
     </div>
+    <div class='message'>{{ message }}</div>
+    <div class='activities'></div>
   """
 
   CommentActivity: """
@@ -60,12 +58,12 @@ App.Templates =
 
   CloseActivity: """
     <div class='closed-activity'>
-      by <span class='user'>{{ user_name }}</span> at <span class='created_at'>{{ posted_at }}</span>
+    <span class='label important'>Closed</span> by <span class='user'>{{ user_name }}</span> at <span class='created_at'>{{ posted_at }}</span>
     </div>
   """
 
-  ReOpenedActivity: """
+  RepenActivity: """
     <div class='reopened-activity'>
-      by <span class='user'>{{ user_name }}</span> at <span class='created_at'>{{ posted_at }}</span>
+     <span class='label success'>Re-opened</span> by <span class='user'>{{ user_name }}</span> at <span class='created_at'>{{ posted_at }}</span>
     </div>
   """

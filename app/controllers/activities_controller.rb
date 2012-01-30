@@ -3,8 +3,8 @@ class ActivitiesController < ApplicationController
   respond_to :json
   
   def index
-    @activities = Activity.where :ticket_id => params[:ticket_id]
-    respond_with @activities
+    @activities = Activity.includes(:user).where :ticket_id => params[:ticket_id]
+    respond_with @activities, :include => :user
   end
 
   def create

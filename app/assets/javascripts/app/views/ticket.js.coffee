@@ -1,5 +1,4 @@
 class App.Views.Ticket extends Backbone.View
-
   tag      : "div"
   className: "ticket"
 
@@ -26,10 +25,8 @@ class App.Views.Ticket extends Backbone.View
 
     activities = new App.Collections.Activities({ticket_id: @model.get('id')})
     activities.fetch({
-      success: ()->
-        $activities = $(".activities")
-        activities.each (activity)->
-          activity_view = new App.Views.Activity({model: activity})
-          $activities.append(activity_view.render().el)
+      success: ()=>
+        activity_list = new App.Views.ActivityList({collection: activities})
+        $(@el).append(activity_list.render().el)
     })
     @

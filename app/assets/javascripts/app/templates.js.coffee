@@ -45,7 +45,6 @@ App.Templates =
       <span class='user'>{{ user_name }}</span> at <span class='created_at'>{{ posted_at }}</span>
     </div>
     <div class='message'>{{ message }}</div>
-    <div class='activities'></div>
   """
 
   CommentActivity: """
@@ -53,6 +52,7 @@ App.Templates =
       <div class='meta'>
         <span class='user'>{{ user_name }}</span> at <span class='created_at'>{{ posted_at }}</span>
       </div>
+      <div class='message'>{{ message }}</div>
     </div>
   """
 

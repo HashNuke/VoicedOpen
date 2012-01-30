@@ -1,7 +1,7 @@
 class App.Router extends Backbone.Router
 
   initialize: ()->
-    @view_handler = new App.ViewHandler()
+    @view_handler = new App.Helpers.ViewHandler()
 
   routes:
     ""                      : "open_tickets"

@@ -1,6 +1,7 @@
 App = {
   Collections: {},
   Controllers: {},
+  Helpers    : {},
   Models     : {},
   Templates  : {},
   Views      : {}

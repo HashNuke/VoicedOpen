@@ -40,11 +40,13 @@ App.Templates =
 
   Search: "<input type='text' class='search'/>"
   Ticket: """
-    <div class='title'>{{ title }}</div>
-    <div class='meta'>
-      <span class='user'>{{ user_name }}</span> at <span class='created_at'>{{ posted_at }}</span>
+    <div class='ticket-details'>
+      <div class='title'>{{ title }}</div>
+      <div class='meta'>
+        <span class='user'>{{ user_name }}</span> at <span class='created_at'>{{ posted_at }}</span>
+      </div>
+      <div class='message'>{{ message }}</div>
     </div>
-    <div class='message'>{{ message }}</div>
   """
 
   CommentActivity: """

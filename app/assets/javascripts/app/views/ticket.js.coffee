@@ -5,14 +5,9 @@ class App.Views.Ticket extends Backbone.View
   initialize: ()->
     _.bindAll(@, "render")
     @template = _.template App.Templates.Ticket
-
+    @activity_list
 
   render: ()->
-    if @model.get("status")=="closed"
-      App.Helpers.TicketStatus.set_to_closed()
-    else
-      App.Helpers.TicketStatus.set_to_open()
-
     compiled_template = @template({
       id        : @model.get("id")
       title     : @model.get("title"),
@@ -26,7 +21,7 @@ class App.Views.Ticket extends Backbone.View
     activities = new App.Collections.Activities({ticket_id: @model.get('id')})
     activities.fetch({
       success: ()=>
-        activity_list = new App.Views.ActivityList({collection: activities})
-        $(@el).append(activity_list.render().el)
+        @activity_list = new App.Views.ActivityList({collection: activities})
+        $(@el).append(@activity_list.render().el)
     })
     @

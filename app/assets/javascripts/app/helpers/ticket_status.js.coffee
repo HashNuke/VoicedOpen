@@ -1,4 +1,4 @@
-class App.Helpers.TicketStatus
+class App.Helpers.TicketListStatus
   @set_to_open: ()->
     $(".open-tickets").addClass("active") if not $(".open-tickets").hasClass("active")
     $(".closed-tickets").removeClass("active") if $(".closed-tickets").hasClass("active")

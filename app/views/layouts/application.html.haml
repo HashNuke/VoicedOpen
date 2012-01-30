@@ -28,9 +28,8 @@
             = link_to "admin", new_admin_session_path
 
       .ticket-nav
-        = link_to "Open tickets", "#tickets/open"
-        = link_to "Closed tickets", "#tickets/closed"
-
+        = link_to "Open tickets",   "#tickets/open",   :class=>"open-tickets"
+        = link_to "Closed tickets", "#tickets/closed", :class=>"closed-tickets"
 
       .main
         = yield

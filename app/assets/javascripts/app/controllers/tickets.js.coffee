@@ -1,7 +1,7 @@
 class App.Controllers.Tickets
 
   @open_tickets: (view_handler)->
-    App.Helpers.TicketStatus.set_to_open()
+    App.Helpers.TicketListStatus.set_to_open()
     tickets = new App.Collections.Tickets()
     tickets.fetch({
       data: $.param({status: "open"}),
@@ -12,7 +12,7 @@ class App.Controllers.Tickets
 
 
   @closed_tickets: (view_handler)->
-    App.Helpers.TicketStatus.set_to_closed()
+    App.Helpers.TicketListStatus.set_to_closed()
     tickets = new App.Collections.Tickets()
     tickets.fetch({
       data: $.param({status: "closed"}),

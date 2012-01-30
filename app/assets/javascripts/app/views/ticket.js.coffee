@@ -1,3 +1,36 @@
 class App.Views.Ticket extends Backbone.View
+
+  tag      : "div"
+  className: "ticket"
+
   initialize: ()->
-    console.log "initialized"
+    _.bindAll(@, "render")
+    @template = _.template App.Templates.Ticket
+
+
+  render: ()->
+    if @model.get("status")=="closed"
+      App.Helpers.TicketStatus.set_to_closed()
+    else
+      App.Helpers.TicketStatus.set_to_open()
+
+    compiled_template = @template({
+      id        : @model.get("id")
+      title     : @model.get("title"),
+      user_name : "#{@model.get('user').get('first_name')} #{@model.get('user').get('last_name')}",
+      message   : @model.get("message"),
+      posted_at : @model.get("created_at")
+    })
+
+    $(@el).html(compiled_template)
+
+    activities = new App.Collections.Activities({ticket_id: @model.get('id')})
+    activities.fetch({
+      success: ()->
+        $activities = $(@el).find(".activities")
+        activities.each ()->
+          $activities.append("activities ma!")
+    })
+
+
+    @

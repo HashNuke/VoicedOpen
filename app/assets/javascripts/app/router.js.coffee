@@ -21,7 +21,6 @@ class App.Router extends Backbone.Router
     App.Controllers.Tickets.new_ticket(@view_handler)
 
   open_tickets: ()->
-    console.log "open tickets show"
     if arguments.length > 0
       App.Controllers.Tickets.open_tickets(@view_handler, arguments.first)
     else

@@ -1,4 +1,7 @@
 class TicketsController < ApplicationController
+
+  before_filter :authenticate_user!, :only => [:destroy, :create]
+  load_and_authorize_resource  
   respond_to :json
   
   def index
@@ -16,6 +19,9 @@ class TicketsController < ApplicationController
   def create
     @ticket = Ticket.new params[:ticket]
 
+    user = current_user || current_admin
+    @ticket.user_id = user.id
+    
     if @ticket.save
       respond_with @ticket
     else

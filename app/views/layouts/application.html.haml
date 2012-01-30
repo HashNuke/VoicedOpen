@@ -1,0 +1,39 @@
+!!!
+%html
+  %head
+    %title VoicedOpen
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+
+    = yield :head
+
+  %body
+    .container
+      .navbar
+        .brand
+          =link_to "VoicedOpen", "#", :class => "brand-name"
+          =link_to "Have something to say?", "#tickets/new", :class => "new-ticket"
+
+        .user-nav
+          - if admin_signed_in?
+            = link_to current_admin.email, edit_user_registration_path
+            = link_to "Logout", destroy_admin_session_path, :method => :delete
+          - elsif user_signed_in?
+            = link_to current_user.email, edit_user_registration_path
+            = link_to "Logout", destroy_user_session_path, :method => :delete
+          - else
+            Login as 
+            = link_to "user", new_user_session_path
+            = link_to "admin", new_admin_session_path
+
+      .ticket-nav
+        = link_to "Open tickets", "#tickets/open"
+        = link_to "Closed tickets", "#tickets/closed"
+
+
+      .main
+        = yield
+
+      .sidebar
+        Here goes the site's sidebar

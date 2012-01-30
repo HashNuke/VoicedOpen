@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require lib/underscore-min
 //= require lib/backbone-min
+//= require lib/backbone-relational
 //= require ./app/boot
 //= require ./app/view_handler
 //= require ./app/router

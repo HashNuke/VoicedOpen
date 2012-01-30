@@ -20,5 +20,16 @@ class App.Controllers.Tickets
     })
 
 
+  @show_ticket: (view_handler, ticket_id)->
+    ticket = new App.Models.Ticket id: ticket_id
+    ticket.fetch({
+      success: ()->
+        ticket_view = new App.Views.Ticket({model: ticket})
+        view_handler.show_ticket ticket_view
+      error: ()->
+        console.log "ticket wasn't found"
+    })
+
+
   @search_tickets: (view_handler, term)->
     console.log "search tickets for #{term}"

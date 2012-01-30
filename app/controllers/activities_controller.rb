@@ -38,12 +38,12 @@ class ActivitiesController < ApplicationController
 
     if @activity.destroy
       respond_to do |format|
-        format.json { head :ok }
+        format.json { render :json => nil, :status => :ok }
       end
     else
       respond_to do |format|
         format.json do
-          render :status => :unprocessable_entity
+          render :json => nil, :status => :unprocessable_entity
         end
       end
     end

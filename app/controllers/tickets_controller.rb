@@ -2,15 +2,15 @@ class TicketsController < ApplicationController
   respond_to :json
   
   def index
-    @tickets = Ticket.where(:status => params[:status]) if params[:status] == "closed" or params[:status] == "open"
+    @tickets = Ticket.includes(:user).where(:status => params[:status]) if params[:status] == "closed" or params[:status] == "open"
 
     @tickets ||= Ticket.all
-    respond_with @tickets
+    respond_with @tickets, :include => :user
   end
 
   def show
-    @ticket = Ticket.find params[:id]
-    respond_with @ticket
+    @ticket = Ticket.includes(:user).find params[:id]
+    respond_with @ticket, :include => :user
   end
 
   def create
@@ -44,11 +44,11 @@ class TicketsController < ApplicationController
 
     if @ticket.destroy
       respond_to do |format|
-        format.json { head :ok }
+        format.json { render :json => nil, :status => :ok }
       end
     else
       respond_to do |format|
-        format.json { render :status => :unprocessable_entity }
+        format.json { render :json => nil, :status => :unprocessable_entity }
       end
     end
   end

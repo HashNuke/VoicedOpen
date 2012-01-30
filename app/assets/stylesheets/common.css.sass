@@ -1,4 +1,8 @@
 @import bootstrap
+@import compass
+
+body
+  background: lighten(#F1F1F1, 1%)
 
 .user-nav
   +columns(4)
@@ -6,9 +10,6 @@
     list-style: none
     li
       display: inline
-
-header
-  +fixed-container
 
 .main
   +columns(12)
@@ -19,13 +20,37 @@ header
   background: #DDD
   float: right
 
+=ticket-tag
+  font-weight: bold
+  padding: 4px
+  border-radius: 3px
+  color: #FFF
+
 .ticket-nav
-  ul
-    list-style: none
-    li
-      display: inline
+  margin-top: 10px
+  margin-bottom: 10px
+  .open-tickets
+    +ticket-tag
+    background: #C43C35
+
+  .closed-tickets
+    +ticket-tag
+    background: #46A546
+
 
 .ticket-list
   float: left
 
-.open-ticket
+
+.ticket
+  margin-top: 20px
+  .ticket-details  
+    +single-box-shadow(#CCC)
+    border: 1px solid #CCC
+    padding: 4px
+    +border-radius(4px)
+      
+    .title
+      font-size: 21px
+      font-weight: bold
+      margin: 5px

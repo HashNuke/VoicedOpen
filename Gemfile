@@ -10,6 +10,7 @@ gem 'haml-rails'
 gem 'devise'
 gem 'devise_bushido_authenticatable', :git => 'git://github.com/Bushido/devise_cas_authenticatable.git'
 gem 'cancan'
+gem 'fancy-buttons'
 
 gem 'zocial'
 gem 'bootstrap-sass'

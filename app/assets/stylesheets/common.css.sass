@@ -1,51 +1,111 @@
-@import bootstrap
-@import compass
+@import fancy-buttons
+@import zocial
+@import blueprint
+@import blueprint/typography
+@import compass/css3
+@import compass/utilities
+@import compass/layout/sticky-footer
+@import compass/utilities/color
+@import blueprint/scaffolding
+@import compass/css3/box-shadow
+
+
+
+// 
+// Blueprint config
+//
+
+$blueprint-grid-columns: 12
+$blueprint-container-size: 980px
+$blueprint-grid-margin: 10px
+
+// Use this to calculate the width based on the total width.
+// Or you can set $blueprint-grid-width to a fixed value and unset $blueprint-container-size -- it will be calculated for you.
+$blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $blueprint-grid-columns - $blueprint-grid-margin
+
+
+$open-ticket: #C43C35
+$closed-ticket: #46A546
++zocial
 
 body
-  background: lighten(#F1F1F1, 1%)
+  +blueprint(true)
+  background: lighten(#F1F1F1, 5%)
+  
 
-.user-nav
-  +columns(4)
-  ul
-    list-style: none
-    li
-      display: inline
+.container
+  +container
+
+.navbar
+  +column(12, true)
+  margin-top: 10px
+  margin-bottom: 10px
+  .brand
+    +column(6)
+    .brand-name
+      font-size: 30px
+
+  .user-nav  
+    +column(6, true)
+    text-align: right
+    a#twitter
+      +zocial-twitter
 
 .main
-  +columns(12)
+  +column(9)
 
 .sidebar
-  +columns(4)
+  +column(3, true)
   +border-radius(4px)
   background: #DDD
   float: right
+  .content
+    margin: 5px
 
 =ticket-tag
   font-weight: bold
   padding: 4px
   border-radius: 3px
   color: #FFF
+  text-decoration: none
 
 .ticket-nav
   margin-top: 10px
   margin-bottom: 10px
+
   .open-tickets
     +ticket-tag
-    background: #C43C35
+    background: $open-ticket
 
   .closed-tickets
     +ticket-tag
-    background: #46A546
+    background: $closed-ticket
 
+= ticket-list-item
+  margin: 5px
+  font-size: 16px
+  .meta
+    font-size: 13px    
+    color: #CCC  
+    .user
+      font-style: italic
+      color: #666
+    .posted_at
+      color: #999
 
 .ticket-list
-  float: left
 
+  .open-ticket
+    +ticket-list-item
+
+  .closed-ticket
+    +ticket-list-item
 
 .ticket
   margin-top: 20px
   .ticket-details  
-    +single-box-shadow(#CCC)
+    +single-box-shadow(#CCC)  
+    background: lighten(#FFEA8E, 20%)
     border: 1px solid #CCC
     padding: 4px
     +border-radius(4px)
@@ -54,3 +114,27 @@ body
       font-size: 21px
       font-weight: bold
       margin: 5px
+    .meta
+      margin: 5px
+    .message
+      margin: 5px
+
+.activities
+  margin-top: 20px
+  .activity
+    margin-top: 5px
+    margin-bottom: 5px
+    border: 1px solid darken(#F1F1F1, 5%)
+    +border-radius(4px)
+    // background: lighten(#F1F1F1, 10%)
+    // background: lighten(#FFEA8E, 18%)
+    background: lighten(#C3E4F2, 13%)
+    .meta
+      color: #999
+      margin: 5px
+      .user
+        color: #333
+        font-weight: bold
+    .message
+      margin: 5px
+ 

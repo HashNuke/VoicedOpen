@@ -10,7 +10,6 @@ gem 'haml-rails'
 gem 'devise'
 gem 'devise_bushido_authenticatable', :git => 'git://github.com/Bushido/devise_cas_authenticatable.git'
 gem 'cancan'
-gem 'fancy-buttons'
 
 gem 'zocial'
 gem 'bootstrap-sass'
@@ -19,6 +18,7 @@ gem 'bootstrap-sass'
 # in production environments by default.
 group :assets do
   gem 'compass', '0.12.alpha.4'
+  gem 'fancy-buttons'
   gem 'sass-rails',   '~> 3.1.5'
   gem 'coffee-rails', '~> 3.1.1'
   gem 'uglifier', '>= 1.0.3'

@@ -21,7 +21,7 @@ App.Templates =
       <div class='title'>
         <a href='#tickets/{{ id }}'>{{ title }}</a>
       </div>
-      <div class='ticket-meta'>
+      <div class='meta'>
         <span class='user'>{{ user_name }}</span> at <span class='created_at'>{{ posted_at }}</span>
       </div>
     </div>
@@ -32,7 +32,7 @@ App.Templates =
       <div class='title'>
         <a href='#tickets/{{ id }}'>{{ title }}</a>
       </div>
-      <div class='ticket-meta'>
+      <div class='meta'>
         <span class='user'>{{ user_name }}</span> at <span class='created_at'>{{ posted_at }}</span>
       </div>
     </div>

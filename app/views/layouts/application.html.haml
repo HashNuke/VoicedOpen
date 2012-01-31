@@ -24,7 +24,8 @@
             = link_to "Logout", destroy_user_session_path, :method => :delete
           - else
             Login as 
-            = link_to "user", new_user_session_path
+            = link_to new_user_session_path, :id => "twitter" do
+              %span Signin with Twitter
             = link_to "admin", new_admin_session_path
 
       .ticket-nav
@@ -35,4 +36,5 @@
         = yield
 
       .sidebar
-        Here goes the site's sidebar
+        .content
+          Here goes the site's sidebar

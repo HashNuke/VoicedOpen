@@ -19,8 +19,7 @@ class TicketsController < ApplicationController
   def create
     @ticket = Ticket.new params[:ticket]
 
-    user = current_user || current_admin
-    @ticket.user_id = user.id
+    @ticket.user_id = operating_user.id
     
     if @ticket.save
       respond_with @ticket
@@ -34,7 +33,10 @@ class TicketsController < ApplicationController
   def update
     @ticket = Ticket.find params[:id]
 
+    old_status = @ticket.status
+
     if @ticket.update_attributes(params[:ticket])
+      @ticket.log_status_activity_by(operating_user) if not @ticket.status==old_status
       respond_with @ticket
     else
       respond_to do |format|
@@ -58,5 +60,10 @@ class TicketsController < ApplicationController
       end
     end
   end
-  
+
+  private
+
+  def operating_user
+    current_user || current_admin
+  end
 end

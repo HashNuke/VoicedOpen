@@ -7,12 +7,23 @@ class App.Views.Ticket extends Backbone.View
     @template = _.template App.Templates.Ticket
     @activity_list
 
+
   events:
-    "click .ticket-status": "toggle_ticket_status"
+    "click .status": "toggle_ticket_status"
 
 
   toggle_ticket_status: ()->
     console.log "toggling ticket status"
+    if @model.get("status") == "open"
+      @model.save({status: "closed"}, {
+        success: ()=>
+          App.Helpers.TicketStatus.set_to_closed()
+      })
+    else if @model.get("status") == "closed"
+      @model.save({status: "open"}, {
+        success: ()=>
+          App.Helpers.TicketStatus.set_to_open()
+      })
 
 
   render: ()->

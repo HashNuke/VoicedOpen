@@ -66,14 +66,8 @@ App.Templates =
     </div>
   """
 
-  CloseActivity: """
-    <div class='closed-activity'>
-    <span class='label important'>Closed</span> by <span class='user'>{{ user_name }}</span> at <span class='posted_at' title='{{ posted_at }}'>{{ posted_at }}</span>
-    </div>
-  """
-
-  RepenActivity: """
-    <div class='reopened-activity'>
-     <span class='label success'>Re-opened</span> by <span class='user'>{{ user_name }}</span> at <span class='posted_at' title='{{ posted_at }}'>{{ posted_at }}</span>
+  StatusActivity: """
+    <div class='meta'>
+      <span class='{{ action }}'>{{ action }}</span> by <span class='user'>{{ user_name }}</span> at <span class='posted_at' title='{{ posted_at }}'>{{ posted_at }}</span>
     </div>
   """

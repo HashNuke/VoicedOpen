@@ -64,12 +64,14 @@ body
   .content
     margin: 5px
 
-=ticket-tag
+= ticket-tag
   font-weight: bold
   padding: 4px
   border-radius: 3px
   color: #FFF
   text-decoration: none
+  text-transform: uppercase
+  font-size: 11px
 
 .ticket-nav
   margin-top: 10px
@@ -124,16 +126,11 @@ body
 
     .ticket-details  
       padding: 4px 4px 0px 4px
-      .status
-        font-weight: bold
-        padding: 3px
-        +border-radius(3px)
-        color: #FFF
-        font-size: 11px
-        text-transform: uppercase
       .open
+        +ticket-tag
         background: $open-ticket
       .closed
+        +ticket-tag
         background: $closed-ticket
       .title
         font-size: 21px
@@ -150,13 +147,22 @@ body
 .activities
   margin-top: 20px
   .activity
-    margin-top: 5px
-    margin-bottom: 5px
-    border: 1px solid darken(#F1F1F1, 5%)
-    +border-radius(4px)
-    // background: lighten(#F1F1F1, 10%)
-    // background: lighten(#FFEA8E, 18%)
-    background: lighten(#C3E4F2, 13%)
+    margin-top: 20px
+    margin-bottom: 20px
+
+    .comment-activity
+      border: 1px solid darken(#F1F1F1, 5%)
+      +border-radius(4px)
+      background: lighten(#C3E4F2, 13%)
+
+    .re-opened
+      +ticket-tag
+      background: $open-ticket
+
+    .closed
+      +ticket-tag
+      background: $closed-ticket
+
     .meta
       color: #999
       margin: 5px

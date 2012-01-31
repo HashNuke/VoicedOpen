@@ -40,12 +40,17 @@ App.Templates =
 
   Search: "<input type='text' class='search'/>"
   Ticket: """
-    <div class='ticket-details'>
-      <div class='title'>{{ title }}</div>
-      <div class='meta'>
-        <span class='user'>{{ user_name }}</span> at <span class='created_at'>{{ posted_at }}</span>
+    <div class='ticket-details-wrapper'>
+      <div class='ticket-details'>
+        <div class='title'>{{ title }}</div>
+        <div class='meta'>
+          <span class='user'>{{ user_name }}</span> at <span class='created_at'>{{ posted_at }}</span>
+        </div>
+        <div class='message'>{{ message }}</div>
       </div>
-      <div class='message'>{{ message }}</div>
+      <div class='action-bar'>
+        <div class='tags'><span class='tag'>customer</span></div>
+      </div>
     </div>
   """
 

@@ -102,21 +102,37 @@ body
     +ticket-list-item
 
 .ticket
-  .ticket-details  
+  .ticket-details-wrapper
     +single-box-shadow(#CCC)  
     background: lighten(#FFEA8E, 20%)
     border: 1px solid #CCC
-    padding: 4px
     +border-radius(4px)
-      
-    .title
-      font-size: 21px
-      font-weight: bold
-      margin: 5px
-    .meta
-      margin: 5px
-    .message
-      margin: 5px
+
+    .action-bar
+      padding: 4px
+      border-top: 1px solid #CCC
+      background: lighten(#DDD, 5%)
+      .tags
+        .tag
+          font-size: 11px
+          background: lighten(#43405D, 4%)
+          text-transform: uppercase
+          color: #FFF
+          padding: 4px
+          font-weight: bold
+          +border-radius(3px)
+
+    .ticket-details  
+      padding: 4px 4px 0px 4px
+      .title
+        font-size: 21px
+        font-weight: bold
+        margin: 5px
+      .meta
+        margin: 5px
+      .message
+        margin: 5px
+
 
 .activities
   margin-top: 20px

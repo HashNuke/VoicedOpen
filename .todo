@@ -1,5 +1,5 @@
 TODO Form for new ticket and have something to say button on top to open it
-TODO should display a message on successful creation of new ticket, redirect the user to the open-tickets page and fetch the tickets once again
+DONE should display a message on successful creation of new ticket, redirect the user to the open-tickets page and fetch the tickets once again
 TODO paginate tickets
 DONE search box and search results
 TODO ticket view should list the ticket and the activities

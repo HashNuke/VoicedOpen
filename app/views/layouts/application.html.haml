@@ -13,7 +13,7 @@
       .navbar
         .brand
           =link_to "VoicedOpen", "#", :class => "brand-name"
-          =link_to "Have something to say?", "#tickets/new", :class => "new-ticket"
+          =link_to "Have something to say?", root_path(:anchor => "tickets/new"), :class => "new-ticket"
 
         .user-nav
           - if admin_signed_in?
@@ -29,8 +29,8 @@
             = link_to "admin", new_admin_session_path
 
       .ticket-nav
-        = link_to "Open tickets",   "#tickets/open",   :class=>"open-tickets"
-        = link_to "Closed tickets", "#tickets/closed", :class=>"closed-tickets"
+        = link_to "Open tickets",   root_path(:anchor => "tickets/open"),   :class=>"open-tickets"
+        = link_to "Closed tickets", root_path(:anchor => "tickets/closed"), :class=>"closed-tickets"
 
       .main
         = yield

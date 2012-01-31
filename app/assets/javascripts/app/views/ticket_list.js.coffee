@@ -16,14 +16,14 @@ class App.Views.TicketList extends Backbone.View
           id        : ticket.get("id")
           title     : ticket.get("title"),
           user_name : "#{ticket.get('user').first_name} #{ticket.get('user').last_name}",
-          posted_at : ticket.get("created_at")
+          posted_at : jQuery.timeago(ticket.get("created_at"))
         })
       else
         ticket_view = @open_ticket_template({
           id        : ticket.get("id")
           title     : ticket.get("title"),
           user_name : "#{ticket.get('user').first_name} #{ticket.get('user').last_name}",
-          posted_at : ticket.get("created_at")
+          posted_at : jQuery.timeago(ticket.get("created_at"))
         })
 
       $ticket_list.append(ticket_view)

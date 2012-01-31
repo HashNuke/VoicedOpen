@@ -26,7 +26,9 @@ $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $b
 
 $open-ticket: #C43C35
 $closed-ticket: #46A546
-+zocial
+
+
+@include sticky-footer(20px, ".container", ".container-footer", ".footer")
 
 body
   +blueprint(true)
@@ -38,8 +40,6 @@ body
 
 .navbar
   +column(12, true)
-  margin-top: 10px
-  margin-bottom: 10px
   .brand
     +column(6)
     .brand-name
@@ -124,12 +124,25 @@ body
 
     .ticket-details  
       padding: 4px 4px 0px 4px
+      .status
+        font-weight: bold
+        padding: 3px
+        +border-radius(3px)
+        color: #FFF
+        font-size: 11px
+        text-transform: uppercase
+      .open
+        background: $open-ticket
+      .closed
+        background: $closed-ticket
       .title
         font-size: 21px
         font-weight: bold
         margin: 5px
       .meta
         margin: 5px
+        .user
+          font-weight: bold
       .message
         margin: 5px
 

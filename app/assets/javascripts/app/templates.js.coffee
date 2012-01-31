@@ -22,7 +22,7 @@ App.Templates =
         <a href='#tickets/{{ id }}'>{{ title }}</a>
       </div>
       <div class='meta'>
-        <span class='user'>{{ user_name }}</span> at <span class='created_at'>{{ posted_at }}</span>
+        by <span class='user'>{{ user_name }}</span> at <span class='posted_at' title='{{ posted_at }}'>{{ posted_at }}</span>
       </div>
     </div>
   """
@@ -33,7 +33,7 @@ App.Templates =
         <a href='#tickets/{{ id }}'>{{ title }}</a>
       </div>
       <div class='meta'>
-        <span class='user'>{{ user_name }}</span> at <span class='created_at'>{{ posted_at }}</span>
+        by <span class='user'>{{ user_name }}</span> at <span class='posted_at' title='{{ posted_at }}'>{{ posted_at }}</span>
       </div>
     </div>
   """
@@ -42,9 +42,12 @@ App.Templates =
   Ticket: """
     <div class='ticket-details-wrapper'>
       <div class='ticket-details'>
-        <div class='title'>{{ title }}</div>
+        <div class='title'>
+          <span class='status {{status}}'>{{ status }}</span>
+          {{ title }}
+        </div>
         <div class='meta'>
-          <span class='user'>{{ user_name }}</span> at <span class='created_at'>{{ posted_at }}</span>
+          <span class='user'>{{ user_name }}</span> at <span class='posted_at' title='{{ posted_at }}'>{{ posted_at }}</span>
         </div>
         <div class='message'>{{ message }}</div>
       </div>
@@ -57,7 +60,7 @@ App.Templates =
   CommentActivity: """
     <div class='comment-activity'>
       <div class='meta'>
-        <span class='user'>{{ user_name }}</span> at <span class='created_at'>{{ posted_at }}</span>
+        <span class='user'>{{ user_name }}</span> at <span class='posted_at' title='{{ posted_at }}'>{{ posted_at }}</span>
       </div>
       <div class='message'>{{ message }}</div>
     </div>
@@ -65,12 +68,12 @@ App.Templates =
 
   CloseActivity: """
     <div class='closed-activity'>
-    <span class='label important'>Closed</span> by <span class='user'>{{ user_name }}</span> at <span class='created_at'>{{ posted_at }}</span>
+    <span class='label important'>Closed</span> by <span class='user'>{{ user_name }}</span> at <span class='posted_at' title='{{ posted_at }}'>{{ posted_at }}</span>
     </div>
   """
 
   RepenActivity: """
     <div class='reopened-activity'>
-     <span class='label success'>Re-opened</span> by <span class='user'>{{ user_name }}</span> at <span class='created_at'>{{ posted_at }}</span>
+     <span class='label success'>Re-opened</span> by <span class='user'>{{ user_name }}</span> at <span class='posted_at' title='{{ posted_at }}'>{{ posted_at }}</span>
     </div>
   """

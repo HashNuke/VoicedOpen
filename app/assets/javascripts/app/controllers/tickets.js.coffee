@@ -28,6 +28,7 @@ class App.Controllers.Tickets
       success: ()->
         ticket_view = new App.Views.Ticket({model: ticket})
         view_handler.show_view ticket_view
+
       error: ()->
         console.log "ticket wasn't found"
     })

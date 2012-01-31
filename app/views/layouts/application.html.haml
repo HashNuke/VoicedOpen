@@ -23,9 +23,9 @@
             = link_to current_user.email, edit_user_registration_path
             = link_to "Logout", destroy_user_session_path, :method => :delete
           - else
-            Login as 
-            = link_to new_user_session_path, :id => "twitter" do
-              %span Signin with Twitter
+            = link_to "Login", new_user_session_path
+            \/
+            = link_to "Sign up", new_user_registration_path
             = link_to "admin", new_admin_session_path
 
       .ticket-nav
@@ -38,3 +38,6 @@
       .sidebar
         .content
           Here goes the site's sidebar
+      .container-footer
+    .footer
+      this is the footer

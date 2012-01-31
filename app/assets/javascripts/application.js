@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require lib/jquery.timeago
 //= require lib/underscore-min
 //= require lib/backbone-min
 //= require ./app/boot

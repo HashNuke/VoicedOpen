@@ -1,8 +1,9 @@
 class TicketsController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [:destroy, :create]
+  before_filter :authenticate_user!, :only => [:destroy, :create, :update]
   load_and_authorize_resource  
   respond_to :json
+  
   
   def index
     @tickets = Ticket.includes(:user).where(:status => params[:status]) if params[:status] == "closed" or params[:status] == "open"

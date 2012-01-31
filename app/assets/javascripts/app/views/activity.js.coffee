@@ -14,6 +14,7 @@ class App.Views.Activity extends Backbone.View
 
 
   render: ()->
+    console.log @model.get('user')
     $(@el).html @template({
       message  : @model.get('message'),
       posted_at: jQuery.timeago(@model.get('created_at')),

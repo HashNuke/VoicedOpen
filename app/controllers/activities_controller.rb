@@ -1,5 +1,7 @@
 class ActivitiesController < ApplicationController
 
+  before_filter :authenticate_user!, :only => [:destroy, :create, :update]
+  load_and_authorize_resource
   respond_to :json
   
   def index
@@ -9,8 +11,12 @@ class ActivitiesController < ApplicationController
 
   def create
     @activity = Activity.new params[:activity]
+    @activity.user_id = operating_user.id
+
     if @activity.save
-      respond_with @activity
+      respond_to do |format|
+        format.json { render :json => @activity }
+      end
     else
       respond_to do |format|
         format.json do

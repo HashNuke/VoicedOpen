@@ -71,3 +71,10 @@ App.Templates =
       <span class='{{ action }}'>{{ action }}</span> by <span class='user'>{{ user_name }}</span> at <span class='posted_at' title='{{ posted_at }}'>{{ posted_at }}</span>
     </div>
   """
+
+  NewComment: """
+    <div class='activity'>
+      <textarea class='new-comment-message'></textarea>
+      <div class='actions'><input type='submit' class='submit'/></div>
+    </div>
+  """

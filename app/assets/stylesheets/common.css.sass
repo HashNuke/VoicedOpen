@@ -53,10 +53,12 @@ body
 
 .main
   +column(9)
+  margin-top: 20px
 
 .sidebar
   +column(3, true)
   +border-radius(4px)
+  margin-top: 20px
   background: #DDD
   float: right
   .content
@@ -94,15 +96,12 @@ body
       color: #999
 
 .ticket-list
-
   .open-ticket
     +ticket-list-item
-
   .closed-ticket
     +ticket-list-item
 
 .ticket
-  margin-top: 20px
   .ticket-details  
     +single-box-shadow(#CCC)  
     background: lighten(#FFEA8E, 20%)

@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   has_many :tickets,    :as => :ticketable
   has_many :activities, :as => :actable
+
+  validates_presence_of :first_name
+  validates_presence_of :last_name
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable

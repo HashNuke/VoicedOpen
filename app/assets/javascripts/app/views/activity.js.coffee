@@ -10,8 +10,6 @@ class App.Views.Activity extends Backbone.View
     else
       @template = _.template App.Templates.StatusActivity
 
-    console.log "initialized activity view"
-
 
   render: ()->
     console.log @model.get('user')

@@ -7,10 +7,15 @@ class App.Views.ActivityList extends Backbone.View
     _.bindAll(@, "render")
     console.log "initialize activity list"
 
+  refresh_list: ()->
+    @collection.fetch({
+      success: ()=>
+        $(@el).empty()
+        @render()
+    })
+
   render: ()->
     @collection.each (activity)=>
       activity_view = new App.Views.Activity({model: activity})
       $(@el).append(activity_view.render().el)
-    new_comment_view = new App.Views.NewComment({ticket_id: @ticket_id})
-    $(@el).append(new_comment_view.render().el) if App.Helpers.User.is_logged_in()
     @

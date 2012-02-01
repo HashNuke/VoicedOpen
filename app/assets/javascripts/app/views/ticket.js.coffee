@@ -13,16 +13,20 @@ class App.Views.Ticket extends Backbone.View
 
 
   toggle_ticket_status: ()->
-    console.log "toggling ticket status"
+    current_user = App.Helpers.User.current_user()
+    return if not (current_user.scope == @model.get('ticketable_type') && current_user.id == @model.get('ticketable_id'))
+
     if @model.get("status") == "open"
       @model.save({status: "closed"}, {
         success: ()=>
           App.Helpers.TicketStatus.set_to_closed()
+          @activity_list.refresh_list()
       })
     else if @model.get("status") == "closed"
       @model.save({status: "open"}, {
         success: ()=>
           App.Helpers.TicketStatus.set_to_open()
+          @activity_list.refresh_list()
       })
 
 

@@ -5,11 +5,13 @@
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
-
-    :javascript
-      $(document).ready(function(){
-        $.data(document, 'user', "#{@operating_user.id if @operating_user}")
-      })
+    
+    
+    - if @operating_user
+      :javascript
+        $(document).ready(function(){
+          $.data(document, 'user', {scope: "#{@operating_user.class.name}", id: #{@operating_user.id}})
+        })
 
     = yield :head
 

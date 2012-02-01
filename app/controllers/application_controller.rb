@@ -21,5 +21,6 @@ class ApplicationController < ActionController::Base
 
   def operating_user
     @operating_user ||= current_admin || current_user
+    @operating_user ||= User.new
   end
 end

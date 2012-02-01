@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [:destroy, :create, :update]
+  before_filter :authenticate_user_or_admin!,  :only => [:destroy, :create, :update]
   load_and_authorize_resource  
   respond_to :json
   

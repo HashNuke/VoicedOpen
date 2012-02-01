@@ -10,7 +10,8 @@ class Admin < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :ido_id, :first_name, :last_name
 
-  def bushido_authenticatable(extra_attributes)
+  def bushido_extra_attributes(extra_attributes)
+    self.email      = extra_attributes["email"]
     self.first_name = extra_attributes["first_name"]
     self.last_name  = extra_attributes["last_name"]
     self.locale     = extra_attributes["locale"]

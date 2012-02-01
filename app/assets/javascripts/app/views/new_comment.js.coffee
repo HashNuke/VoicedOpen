@@ -13,7 +13,7 @@ class App.Views.NewComment extends Backbone.View
 
 
   submit_comment: ()->
-    console.log "submission bob"
+    console.log "TICKET ID #{@model.get('ticket_id')}"
     @model.save({message: $('.new-comment-message').val()})
 
   render: ()->

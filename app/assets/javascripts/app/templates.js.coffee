@@ -51,9 +51,6 @@ App.Templates =
         </div>
         <div class='message'>{{ message }}</div>
       </div>
-      <div class='action-bar'>
-        <div class='tags'><span class='tag'>customer</span></div>
-      </div>
     </div>
   """
 

@@ -5,13 +5,12 @@ class ActivitiesController < ApplicationController
   respond_to :json
   
   def index
-    @activities = Activity.includes(:user).where :ticket_id => params[:ticket_id]
-    respond_with @activities, :include => :user
+    @activities = Activity.includes(:actable).where :ticket_id => params[:ticket_id]
+    respond_with @activities, :include => :actable
   end
 
   def create
-    @activity = Activity.new params[:activity]
-    @activity.user_id = operating_user.id
+    @activity =  operating_user.activities.build params[:activity]
 
     if @activity.save
       respond_to do |format|

@@ -30,7 +30,7 @@ class App.Views.Ticket extends Backbone.View
     compiled_template = @template({
       id        : @model.get("id")
       title     : @model.get("title"),
-      user_name : "#{@model.get('user').get('first_name')} #{@model.get('user').get('last_name')}",
+      user_name : "#{@model.get('ticketable').first_name} #{@model.get('ticketable').last_name}",
       status    : @model.get('status')
       message   : @model.get("message"),
       posted_at : jQuery.timeago(@model.get("created_at"))

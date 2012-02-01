@@ -1,6 +1,6 @@
 class Ticket < ActiveRecord::Base
-  belongs_to :user
-  has_many :activities, :dependent => :destroy
+  belongs_to :ticketable, :polymorphic => true
+  has_many :activities,   :dependent => :destroy
   
   validate :title, :presence => true
 
@@ -8,9 +8,9 @@ class Ticket < ActiveRecord::Base
     status_action = "re-opened" if self.status == "open"
     status_action = "closed"    if self.status == "closed"
 
-    activity = self.activities.build(
-      :action  => status_action,
-      :user_id => user.id)
+    activity = user.activities.build(
+      :action    => status_action,
+      :ticket_id => self.id)
     activity.save
   end
   

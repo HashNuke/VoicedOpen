@@ -10,9 +10,9 @@ class App.Models.Ticket extends Backbone.Model
   initialize: ()->
     console.log "initialized ticket"
 
-  parse: (response)=>
-    user = new App.Models.User(response.user)
-    @set({"user", user})
-    delete response.user
+  # parse: (response)=>
+  #   user = new App.Models.User(response.ticketable)
+  #   @set({"user", user})
+  #   delete response.user
 
-    response
+  #   response

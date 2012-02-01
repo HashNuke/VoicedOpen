@@ -9,12 +9,12 @@ class Ability
     can :read, Ticket
     can :read, Activity
 
-    if user.persisted?
+    if user.persisted? and user.kind_of? User
       can [:create, :update], Ticket
       can [:create], Activity
     end
 
-    if user.type == "Admin"
+    if user.kind_of? Admin
       can :manage, :all
     end
       

@@ -6,22 +6,20 @@ class TicketsController < ApplicationController
   
   
   def index
-    @tickets = Ticket.includes(:user).where(:status => params[:status]) if params[:status] == "closed" or params[:status] == "open"
+    @tickets = Ticket.includes(:ticketable).where(:status => params[:status]) if params[:status] == "closed" or params[:status] == "open"
 
     @tickets ||= Ticket.all
-    respond_with @tickets, :include => :user
+    respond_with @tickets, :include => :ticketable
   end
 
   def show
-    @ticket = Ticket.includes(:user).find params[:id]
-    respond_with @ticket, :include => :user
+    @ticket = Ticket.includes(:ticketable).find params[:id]
+    respond_with @ticket, :include => :ticketable
   end
 
   def create
-    @ticket = Ticket.new params[:ticket]
+    @ticket = operating_user.tickets.build params[:ticket]
 
-    @ticket.user_id = operating_user.id
-    
     if @ticket.save
       respond_with @ticket
     else

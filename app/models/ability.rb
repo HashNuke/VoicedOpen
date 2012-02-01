@@ -10,7 +10,12 @@ class Ability
     can :read, Activity
 
     if user.persisted? and user.kind_of? User
-      can [:create, :update], Ticket
+      can :create, Ticket
+
+      can :update, Ticket do |ticket|
+        ticket.ticketable_id == user.id
+      end
+
       can [:create], Activity
     end
 

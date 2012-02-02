@@ -5,6 +5,7 @@ class App.Views.TicketList extends Backbone.View
   initialize: (options)->
     _.bindAll(@, "render")
     @page = options.page
+    @ticket_status = options.ticket_status
     @open_ticket_template   = _.template App.Templates.OpenTicket
     @closed_ticket_template = _.template App.Templates.ClosedTicket
 
@@ -39,9 +40,9 @@ class App.Views.TicketList extends Backbone.View
     ticket_list_nav = $("<div class='ticket-list-nav'></div>")
 
     if current_page!=1
-      ticket_list_nav.append "<a href='#tickets/open/#{current_page-1}'>prev</a>"
+      ticket_list_nav.append "<a href='#tickets/#{@ticket_status}/#{current_page-1}'>prev</a>"
     if current_page!=total_pages
-      ticket_list_nav.append "<a href='#tickets/open/#{current_page+1}'>next</a>"
+      ticket_list_nav.append "<a href='#tickets/#{@ticket_status}/#{current_page+1}'>next</a>"
 
 
     $ticket_list.append(ticket_list_nav)

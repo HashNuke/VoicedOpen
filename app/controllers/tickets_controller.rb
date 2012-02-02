@@ -7,7 +7,7 @@ class TicketsController < ApplicationController
 
   def index
     page          = params[:page].to_i || 1
-    @ticket_limit  = 10
+    @ticket_limit = 5
     ticket_offset = (page * @ticket_limit) - @ticket_limit
     ticket_status = params[:status] || "open"
 

@@ -6,7 +6,7 @@ class App.Controllers.Tickets
     tickets.fetch({
       data: $.param({status: "open", page: page}),
       success: ()->
-        ticket_list = new App.Views.TicketList({collection: tickets})
+        ticket_list = new App.Views.TicketList({collection: tickets, ticket_status: "open"})
         view_handler.show_view ticket_list
     })
 
@@ -17,7 +17,7 @@ class App.Controllers.Tickets
     tickets.fetch({
       data: $.param({status: "closed", page: page}),
       success: ()->
-        ticket_list = new App.Views.TicketList({collection: tickets, page: page})
+        ticket_list = new App.Views.TicketList({collection: tickets, page: page, ticket_status: "closed"})
         view_handler.show_view ticket_list
     })
 

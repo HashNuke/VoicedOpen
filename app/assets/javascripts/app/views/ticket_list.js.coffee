@@ -45,6 +45,5 @@ class App.Views.TicketList extends Backbone.View
     if current_page > 0 && current_page!=total_pages
       ticket_list_nav.append "<a href='#tickets/#{@ticket_status}/#{current_page+1}'>next</a>"
 
-
     $ticket_list.append(ticket_list_nav)
     @

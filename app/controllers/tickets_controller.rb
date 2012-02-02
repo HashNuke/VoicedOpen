@@ -6,12 +6,12 @@ class TicketsController < ApplicationController
   
 
   def index
-    page          = params[:page].to_i || 1
+    page          = (params[:page] || 1).to_i
     @ticket_limit = 5
     ticket_offset = (page * @ticket_limit) - @ticket_limit
     ticket_status = params[:status] || "open"
 
-    @ticket_count = Ticket.count
+    @ticket_count = Ticket.where(:status => ticket_status).count
     
     @tickets = Ticket.includes(:ticketable).
       order("id DESC").
@@ -19,6 +19,8 @@ class TicketsController < ApplicationController
       limit(@ticket_limit).
       offset(ticket_offset)
 
+    page = 0 if @ticket_count == 0
+    
     # @tickets ||= Ticket.all
     respond_with({
         :page          => page,

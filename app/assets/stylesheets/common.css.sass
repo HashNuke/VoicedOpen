@@ -81,8 +81,7 @@ body
   font-size: 11px
 
 .ticket-nav
-  margin-top: 10px
-  margin-bottom: 10px
+  +column(4)
 
   .open-tickets
     +ticket-tag
@@ -91,6 +90,9 @@ body
   .closed-tickets
     +ticket-tag
     background: $closed-ticket
+
+.search-wrapper
+  +column(6)
 
 = ticket-list-item
   margin: 5px

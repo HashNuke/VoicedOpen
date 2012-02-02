@@ -39,9 +39,10 @@ class App.Views.TicketList extends Backbone.View
 
     ticket_list_nav = $("<div class='ticket-list-nav'></div>")
 
-    if current_page!=1
+    if current_page > 1
       ticket_list_nav.append "<a href='#tickets/#{@ticket_status}/#{current_page-1}'>prev</a>"
-    if current_page!=total_pages
+
+    if current_page > 0 && current_page!=total_pages
       ticket_list_nav.append "<a href='#tickets/#{@ticket_status}/#{current_page+1}'>next</a>"
 
 

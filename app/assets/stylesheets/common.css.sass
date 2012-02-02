@@ -10,7 +10,6 @@
 @import compass/css3/box-shadow
 
 
-
 // 
 // Blueprint config
 //
@@ -32,18 +31,22 @@ $closed-ticket: #46A546
 
 body
   +blueprint(true)
-  background: lighten(#F1F1F1, 5%)
-  
+  background: lighten(#F1F1F1, 5%)  
 
 .container
   +container
 
 .navbar
   +column(12, true)
+  margin-bottom: 40px
   .brand
     +column(6)
     .brand-name
-      font-size: 30px
+      margin-top: 10px
+      margin-right: 30px
+      font-size: 20px
+      text-decoration: none
+      color: #0066CC
 
   .user-nav  
     +column(6, true)
@@ -63,6 +66,10 @@ body
   float: right
   .content
     margin: 5px
+
+.new-ticket
+  +fancy-button-matte(#666, $font-size: 16px, $radius: 3px)
+  
 
 = ticket-tag
   font-weight: bold

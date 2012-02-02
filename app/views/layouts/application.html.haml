@@ -5,8 +5,7 @@
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
-    
-    
+  
     - if @operating_user
       :javascript
         $(document).ready(function(){
@@ -38,6 +37,7 @@
       .ticket-nav
         = link_to "Open tickets",   root_path(:anchor => "tickets/open"),   :class=>"open-tickets"
         = link_to "Closed tickets", root_path(:anchor => "tickets/closed"), :class=>"closed-tickets"
+      .search-wrapper
 
       .main
         = yield

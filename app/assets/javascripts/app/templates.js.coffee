@@ -38,7 +38,7 @@ App.Templates =
     </div>
   """
 
-  Search: "<input type='text' class='search'/>"
+  Search: "<input type='text' class='search-keyword'/>"
   Ticket: """
     <div class='ticket-details-wrapper'>
       <div class='ticket-details'>

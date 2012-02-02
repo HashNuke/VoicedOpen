@@ -22,15 +22,21 @@ class App.Router extends Backbone.Router
 
   open_tickets: ()->
     if arguments.length > 0
-      App.Controllers.Tickets.open_tickets(@view_handler, arguments.first)
+      page = arguments[0]
     else
-      App.Controllers.Tickets.open_tickets(@view_handler)
+      page = 1
+
+    App.Controllers.Tickets.open_tickets(@view_handler, page)
+
 
   closed_tickets: ()->
     if arguments.length > 0
-      App.Controllers.Tickets.closed_tickets(@view_handler, arguments.first)
+      page = arguments[0]
     else
-      App.Controllers.Tickets.closed_tickets(@view_handler)
+      page = 1
+
+    App.Controllers.Tickets.closed_tickets(@view_handler, page)
+
 
   show_ticket: (ticket_id)->
     App.Controllers.Tickets.show_ticket(@view_handler, ticket_id)

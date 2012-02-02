@@ -1,23 +1,23 @@
 class App.Controllers.Tickets
 
-  @open_tickets: (view_handler)->
+  @open_tickets: (view_handler, page)->
     App.Helpers.TicketListStatus.set_to_open()
     tickets = new App.Collections.Tickets()
     tickets.fetch({
-      data: $.param({status: "open"}),
+      data: $.param({status: "open", page: page}),
       success: ()->
         ticket_list = new App.Views.TicketList({collection: tickets})
         view_handler.show_view ticket_list
     })
 
 
-  @closed_tickets: (view_handler)->
+  @closed_tickets: (view_handler, page)->
     App.Helpers.TicketListStatus.set_to_closed()
     tickets = new App.Collections.Tickets()
     tickets.fetch({
-      data: $.param({status: "closed"}),
+      data: $.param({status: "closed", page: page}),
       success: ()->
-        ticket_list = new App.Views.TicketList({collection: tickets})
+        ticket_list = new App.Views.TicketList({collection: tickets, page: page})
         view_handler.show_view ticket_list
     })
 

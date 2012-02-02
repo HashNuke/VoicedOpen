@@ -8,11 +8,13 @@ class App.Views.Search extends Backbone.View
     console.log "initialized search"
 
   render: ()->
-    $(@el).html(@template())
+    $(@el).html(@template({}))
     @
 
   events:
-    "click .search": "perform_search"
+    "keypress .search-keyword": "perform_search"
 
   perform_search: (e)->
-    console.log("akash")
+    search_term = $(@el).find(".search-keyword").val()
+    if e.keyCode == 13 and search_term.length >3
+      console.log search_term

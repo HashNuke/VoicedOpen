@@ -4,12 +4,28 @@ class TicketsController < ApplicationController
   load_and_authorize_resource  
   respond_to :json
   
-  
-  def index
-    @tickets = Ticket.includes(:ticketable).where(:status => params[:status]) if params[:status] == "closed" or params[:status] == "open"
 
-    @tickets ||= Ticket.all
-    respond_with @tickets, :include => :ticketable
+  def index
+    page          = params[:page].to_i || 1
+    @ticket_limit  = 10
+    ticket_offset = (page * @ticket_limit) - @ticket_limit
+    ticket_status = params[:status] || "open"
+
+    @ticket_count = Ticket.count
+    
+    @tickets = Ticket.includes(:ticketable).
+      order("id DESC").
+      where(:status => ticket_status).
+      limit(@ticket_limit).
+      offset(ticket_offset)
+
+    # @tickets ||= Ticket.all
+    respond_with({
+        :page          => page,
+        :tickets       => @tickets,
+        :total_tickets => @ticket_count,
+        :per_page      => @ticket_limit
+    }.to_json(:include => :ticketable))
   end
 
   def show

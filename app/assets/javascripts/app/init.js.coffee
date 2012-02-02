@@ -1,7 +1,9 @@
 App.start = ()->
   window.router = new App.Router()
   Backbone.history.start()
-  jQuery(".posted_at").timeago()
+  search_view = new App.Views.Search()
+  $(".search-wrapper").html search_view.render().el
+  # jQuery(".posted_at").timeago()
 
 Backbone.View.prototype.close = ()->
   @remove()

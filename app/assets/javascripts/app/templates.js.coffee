@@ -71,6 +71,7 @@ App.Templates =
 
   NewComment: """
     <div class='activity'>
+      <h2>Post a comment</h2>
       <textarea class='new-comment-message'></textarea>
       <div class='actions'><input type='submit' class='submit'/></div>
     </div>

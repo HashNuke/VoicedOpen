@@ -34,8 +34,15 @@ class App.Controllers.Tickets
     })
 
 
-  @search_tickets: (view_handler, term)->
-    console.log "search tickets for #{term}"
+  @search_tickets: (view_handler, term, page)->
+    tickets = new App.Collections.Tickets()
+    tickets.fetch({
+      data: $.param({term: term}),
+      success: ()->
+        ticket_list = new App.Views.TicketList({collection: tickets, term: term, page: page})
+        view_handler.show_view ticket_list
+    })
+
 
   @new_ticket: (view_handler)->
     ticket = new App.Models.Ticket()

@@ -5,7 +5,10 @@ class App.Router extends Backbone.Router
 
   routes:
     ""                      : "open_tickets"
-    "tickets/search/:term"  : "search"
+
+    "tickets/search/:term/:page"  : "search_tickets"
+    "tickets/search/:term"  : "search_tickets"
+
     "tickets/new"           : "new_ticket"
 
     "tickets/open/:page"    : "open_tickets"
@@ -36,6 +39,16 @@ class App.Router extends Backbone.Router
       page = 1
 
     App.Controllers.Tickets.closed_tickets(@view_handler, page)
+
+
+  search_tickets: ()->
+    term = arguments[0]
+    if arguments.length > 1
+      page = arguments[1]
+    else
+      page = 1
+
+    App.Controllers.Tickets.search_tickets(@view_handler, term, page)
 
 
   show_ticket: (ticket_id)->

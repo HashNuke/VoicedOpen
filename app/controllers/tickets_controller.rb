@@ -10,15 +10,27 @@ class TicketsController < ApplicationController
     @ticket_limit = 5
     ticket_offset = (page * @ticket_limit) - @ticket_limit
     ticket_status = params[:status] || "open"
+    search_term   = params[:term]
 
-    @ticket_count = Ticket.where(:status => ticket_status).count
+    if search_term
+      @ticket_count = Ticket.where("title LIKE ? OR message LIKE ?", "%#{search_term}%", "%#{search_term}%").count
     
-    @tickets = Ticket.includes(:ticketable).
-      order("id DESC").
-      where(:status => ticket_status).
-      limit(@ticket_limit).
-      offset(ticket_offset)
+      @tickets = Ticket.includes(:ticketable).
+        where("title LIKE ? OR message LIKE ?", "%#{search_term}%", "%#{search_term}%").
+        limit(@ticket_limit).
+        offset(ticket_offset)
+      puts "TICKET_COUNT #{@ticket_count}"
+    else
+      @ticket_count = Ticket.where(:status => ticket_status).count
+    
+      @tickets = Ticket.includes(:ticketable).
+        order("id DESC").
+        where(:status => ticket_status).
+        limit(@ticket_limit).
+        offset(ticket_offset)
 
+    end
+      
     page = 0 if @ticket_count == 0
     
     # @tickets ||= Ticket.all
@@ -30,6 +42,10 @@ class TicketsController < ApplicationController
     }.to_json(:include => :ticketable))
   end
 
+  def search
+    
+  end
+  
   def show
     @ticket = Ticket.includes(:ticketable).find params[:id]
     respond_with @ticket, :include => :ticketable

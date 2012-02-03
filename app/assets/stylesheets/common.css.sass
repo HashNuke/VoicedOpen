@@ -1,5 +1,4 @@
 @import fancy-buttons
-@import zocial
 @import blueprint
 @import blueprint/typography
 @import compass/css3
@@ -51,8 +50,6 @@ body
   .user-nav  
     +column(6, true)
     text-align: right
-    a#twitter
-      +zocial-twitter
 
 .main
   +column(9)
@@ -67,7 +64,7 @@ body
   .content
     margin: 5px
 
-.new-ticket
+.new-ticket-link
   +fancy-button-matte(#666, $font-size: 16px, $radius: 3px)
   
 
@@ -181,3 +178,6 @@ body
     .message
       margin: 5px
  
+.new-comment-message
+  width: 400px
+  height: 100px

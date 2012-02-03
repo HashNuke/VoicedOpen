@@ -5,7 +5,9 @@ class App.Views.TicketList extends Backbone.View
   initialize: (options)->
     _.bindAll(@, "render")
     @page = options.page
-    @ticket_status = options.ticket_status
+    @ticket_status = options.ticket_status if options.ticket_status
+    @search_term = options.term if options.term
+    @ticket_status = "search/#{@search_term}" if @search_term
     @open_ticket_template   = _.template App.Templates.OpenTicket
     @closed_ticket_template = _.template App.Templates.ClosedTicket
 
@@ -33,6 +35,8 @@ class App.Views.TicketList extends Backbone.View
 
       $ticket_list.append(ticket_view)
 
+    if @collection.pluck("title").length == 0
+      $ticket_list.append("<h2>No tickets found</h2>")
 
     current_page = @collection.current_page
     total_pages  = @collection.total_pages()

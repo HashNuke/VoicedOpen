@@ -19,7 +19,10 @@
       .navbar
         .brand
           =link_to "VoicedOpen", "#", :class => "brand-name"
-          =link_to "Have something to say?", root_path(:anchor => "tickets/new"), :class => "new-ticket"
+          - if not (user_signed_in? || admin_signed_in?)
+            =link_to "Have something to say? Login here", new_user_session_path, :class => "new-ticket-link"
+          - else
+            =link_to "Have something to say?", root_path(:anchor => "tickets/new"), :class => "new-ticket-link"
 
         .user-nav
           - if admin_signed_in?

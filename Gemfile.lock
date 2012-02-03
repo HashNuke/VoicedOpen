@@ -8,7 +8,8 @@ GIT
 
 GIT
   remote: https://github.com/Bushido/bushidogem.git
-  revision: 1193866630c936a64b93b842563b3039ee7de012
+  revision: cb05aa4ee694c879b8321b4b8fbe0c7c29d6a2a9
+  branch: mail_fix
   specs:
     bushido (0.0.35)
       highline (>= 1.6.1)

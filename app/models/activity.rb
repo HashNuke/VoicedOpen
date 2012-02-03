@@ -2,7 +2,7 @@ class Activity < ActiveRecord::Base
   belongs_to :actable, :polymorphic => true
   belongs_to :ticket
 
-  # after_create :notify_participants
+  after_create :notify_participants
 
   def notify_participants
     ticket = self.ticket

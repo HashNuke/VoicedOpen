@@ -28,9 +28,10 @@ class Ticket < ActiveRecord::Base
             :first_name => ticketable.first_name,
             :last_name  => ticketable.last_name
           },
-          :title => self.title,
-          :body  => self.message,
-          :source => "VoicedOpen"
+          :title  => self.title,
+          :body   => self.message,
+          :source => "VoicedOpen",
+          :url    =>"#{ENV['PUBLIC_URL']}/#tickets/#{self.to_param}"
         }
       })
   end

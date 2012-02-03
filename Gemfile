@@ -10,7 +10,7 @@ gem 'haml-rails'
 gem 'devise'
 gem 'devise_bushido_authenticatable', :git => 'git://github.com/Bushido/devise_cas_authenticatable.git'
 gem 'cancan'
-
+gem 'bushido', :git => 'https://github.com/Bushido/bushidogem.git'
 
 
 # Gems used only for assets and not required

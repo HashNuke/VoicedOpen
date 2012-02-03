@@ -11,8 +11,7 @@ gem 'devise'
 gem 'devise_bushido_authenticatable', :git => 'git://github.com/Bushido/devise_cas_authenticatable.git'
 gem 'cancan'
 
-gem 'zocial'
-gem 'bootstrap-sass'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -22,9 +21,8 @@ group :assets do
   gem 'sass-rails',   '~> 3.1.5'
   gem 'coffee-rails', '~> 3.1.1'
   gem 'uglifier', '>= 1.0.3'
+  gem 'jquery-rails'
 end
-
-gem 'jquery-rails'
 
 group :test do
   gem 'rspec-rails'
@@ -32,6 +30,12 @@ group :test do
   gem 'shoulda-matchers'
   gem 'capybara'
 end
+
+group :development do
+  gem 'guard'
+end
+
+gem 'jasmine', :git => "https://github.com/pivotal/jasmine-gem.git", :branch => "1.2.rc1", :group => [:development, :test]
 
 
 # To use ActiveModel has_secure_password

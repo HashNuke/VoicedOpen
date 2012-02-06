@@ -3,6 +3,8 @@ VoicedOpen::Application.routes.draw do
   devise_for :users, :admins
 
   root :to => "main#index"
+
+  resources :settings
   
   resources :tickets, :except => [:edit] do
     resources :activities, :except => [:edit, :show]

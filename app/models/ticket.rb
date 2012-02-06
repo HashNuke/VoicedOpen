@@ -5,23 +5,32 @@ class Ticket < ActiveRecord::Base
   validate :title, :presence => true
   validate :message, :presence => true
 
-  after_create :publish_bushido_event
-  
+  after_create :publish_bushido_open_event
+
+
   def log_status_activity_by(user)
     status_action = "re-opened" if self.status == "open"
     status_action = "closed"    if self.status == "closed"
 
+    publish_bushido_event("closed") if status_action == "closed"
+    
     activity = user.activities.build(
       :action    => status_action,
       :ticket_id => self.id)
     activity.save
   end
 
-  def publish_bushido_event
+
+  def publish_bushido_open_event
+    publish_bushido_event("open")
+  end
+
+
+  def publish_bushido_event(status)
     ticketable = self.ticketable
     ::Bushido::Event.publish({
         :category => :support_case,
-        :name     => :opened,
+        :name     => status,
         :data     => {
           :author => {
             :email => ticketable.email,

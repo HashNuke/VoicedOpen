@@ -7,7 +7,7 @@ class TicketsController < ApplicationController
 
   def index
     page          = (params[:page] || 1).to_i
-    @ticket_limit = 5
+    @ticket_limit = 10
     ticket_offset = (page * @ticket_limit) - @ticket_limit
     ticket_status = params[:status] || "open"
     search_term   = params[:term]
@@ -28,7 +28,6 @@ class TicketsController < ApplicationController
         where(:status => ticket_status).
         limit(@ticket_limit).
         offset(ticket_offset)
-
     end
       
     page = 0 if @ticket_count == 0

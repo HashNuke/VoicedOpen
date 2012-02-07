@@ -6,48 +6,16 @@ class App.Views.TicketList extends Backbone.View
     _.bindAll(@, "render")
     @page = options.page
     @ticket_status = options.ticket_status if options.ticket_status
-    @search_term = options.term if options.term
-    @ticket_status = "search/#{@search_term}" if @search_term
-    @open_ticket_template   = _.template App.Templates.OpenTicket
-    @closed_ticket_template = _.template App.Templates.ClosedTicket
-
 
   render: ()->
-    $ticket_list = $(@el)
-    $ticket_list.empty()
+    $(@el).empty()
 
     @collection.each (ticket)=>
-      ticket_view = null;
-      if ticket.get("status") == "closed"
-        ticket_view = @closed_ticket_template({
-          id        : ticket.get("id")
-          title     : ticket.get("title"),
-          user_name : "#{ticket.get('ticketable').first_name} #{ticket.get('ticketable').last_name}",
-          posted_at : jQuery.timeago(ticket.get("created_at"))
-        })
-      else
-        ticket_view = @open_ticket_template({
-          id        : ticket.get("id")
-          title     : ticket.get("title"),
-          user_name : "#{ticket.get('ticketable').first_name} #{ticket.get('ticketable').last_name}",
-          posted_at : jQuery.timeago(ticket.get("created_at"))
-        })
+      ticket_view = new App.Views.TicketListItem({model: ticket})
+      $(@el).append(ticket_view.render().el)
 
-      $ticket_list.append(ticket_view)
+    $(@el).append("<h2>No tickets found</h2>") if @collection.pluck("title").length == 0
 
-    if @collection.pluck("title").length == 0
-      $ticket_list.append("<h2>No tickets found</h2>")
-
-    current_page = @collection.current_page
-    total_pages  = @collection.total_pages()
-
-    ticket_list_nav = $("<div class='ticket-list-nav'></div>")
-
-    if current_page > 1
-      ticket_list_nav.append "<a href='#tickets/#{@ticket_status}/#{current_page-1}'>prev</a>"
-
-    if current_page > 0 && current_page!=total_pages
-      ticket_list_nav.append "<a href='#tickets/#{@ticket_status}/#{current_page+1}'>next</a>"
-
-    $ticket_list.append(ticket_list_nav)
+    ticket_list_nav = new App.Views.TicketListNav({collection: @collection, ticket_status: @ticket_status})
+    $(@el).append(ticket_list_nav.render().el)
     @

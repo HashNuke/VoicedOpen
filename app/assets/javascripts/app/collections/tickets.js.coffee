@@ -9,7 +9,8 @@ class App.Collections.Tickets extends Backbone.Collection
 
 
   initialize: (options)->
-    @search = options.search if options.search
+    if options && options.hasOwnProperty('search')
+      @search = options.search
     console.log "initialized collection"
 
   parse: (response)->

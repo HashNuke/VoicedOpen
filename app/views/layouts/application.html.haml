@@ -9,7 +9,7 @@
     - if @operating_user
       :javascript
         $(document).ready(function(){
-          $.data(document, 'user', {scope: "#{@operating_user.class.name}", id: #{@operating_user.id}})
+          $.data(document, 'user', {scope: "#{@operating_user.class.name}", id: #{@operating_user.id || "null"}})
         })
 
     = yield :head

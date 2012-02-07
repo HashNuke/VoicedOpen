@@ -11,7 +11,6 @@ class App.Views.TicketListNav extends Backbone.View
 
 
   render: ()->
-    console.log @collection
     current_page = @collection.current_page
     total_pages  = @collection.total_pages()
 

@@ -95,7 +95,7 @@ class TicketsController < ApplicationController
 
   def set_pagination_details
     @page          = (params[:page] || 1).to_i
-    @ticket_limit  = 5
+    @ticket_limit  = 10
     @ticket_offset = (@page * @ticket_limit) - @ticket_limit
     @ticket_status = params[:status] || "open"
     @search_term   = params[:term]

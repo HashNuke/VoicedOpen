@@ -22,7 +22,7 @@ App.Templates =
         <a href='#tickets/{{ id }}'>{{ title }}</a>
       </div>
       <div class='meta'>
-        by <span class='user'>{{ user_name }}</span> at <span class='posted_at' title='{{ posted_at }}'>{{ posted_at }}</span>
+        by <span class='user'>{{ user_name }}</span> <span class='posted_at' title='{{ posted_at }}'>{{ posted_at }}</span>
       </div>
   """
 
@@ -35,7 +35,7 @@ App.Templates =
           {{ title }}
         </div>
         <div class='meta'>
-          <span class='user'>{{ user_name }}</span> at <span class='posted_at' title='{{ posted_at }}'>{{ posted_at }}</span>
+          <span class='user'>{{ user_name }}</span> <span class='posted_at' title='{{ posted_at }}'>{{ posted_at }}</span>
         </div>
         <div class='message'>{{ message }}</div>
       </div>
@@ -45,7 +45,7 @@ App.Templates =
   CommentActivity: """
     <div class='comment-activity'>
       <div class='meta'>
-        <span class='user'>{{ user_name }}</span> at <span class='posted_at' title='{{ posted_at }}'>{{ posted_at }}</span>
+        <span class='user'>{{ user_name }}</span> <span class='posted_at' title='{{ posted_at }}'>{{ posted_at }}</span>
       </div>
       <div class='message'>{{ message }}</div>
     </div>
@@ -53,7 +53,7 @@ App.Templates =
 
   StatusActivity: """
     <div class='meta'>
-      <span class='{{ action }}'>{{ action }}</span> by <span class='user'>{{ user_name }}</span> at <span class='posted_at' title='{{ posted_at }}'>{{ posted_at }}</span>
+      <span class='{{ action }}'>{{ action }}</span> by <span class='user'>{{ user_name }}</span> about <span class='posted_at' title='{{ posted_at }}'>{{ posted_at }}</span>
     </div>
   """
 

@@ -1,9 +1,15 @@
 class App.Collections.Tickets extends Backbone.Collection
 
   model: App.Models.Ticket
-  url  : "/tickets"
+  url  : ()->
+    if @search
+      return "/tickets/search"
+    else
+      return "/tickets"
 
-  initialize: ()->
+
+  initialize: (options)->
+    @search = options.search if options.search
     console.log "initialized collection"
 
   parse: (response)->

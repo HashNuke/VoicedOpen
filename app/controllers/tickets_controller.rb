@@ -3,38 +3,22 @@ class TicketsController < ApplicationController
   before_filter :authenticate_user_or_admin!,  :only => [:destroy, :create, :update]
   load_and_authorize_resource  
   respond_to :json
+  before_filter :set_pagination_details, :only => [:index, :search]
   
 
   def index
-    page          = (params[:page] || 1).to_i
-    @ticket_limit = 10
-    ticket_offset = (page * @ticket_limit) - @ticket_limit
-    ticket_status = params[:status] || "open"
-    search_term   = params[:term]
-
-    if search_term
-      @ticket_count = Ticket.where("title LIKE ? OR message LIKE ?", "%#{search_term}%", "%#{search_term}%").count
+    @ticket_count = Ticket.where(:status => @ticket_status).count
     
-      @tickets = Ticket.includes(:ticketable).
-        where("title LIKE ? OR message LIKE ?", "%#{search_term}%", "%#{search_term}%").
-        limit(@ticket_limit).
-        offset(ticket_offset)
-      puts "TICKET_COUNT #{@ticket_count}"
-    else
-      @ticket_count = Ticket.where(:status => ticket_status).count
-    
-      @tickets = Ticket.includes(:ticketable).
-        order("id DESC").
-        where(:status => ticket_status).
-        limit(@ticket_limit).
-        offset(ticket_offset)
-    end
+    @tickets = Ticket.includes(:ticketable).
+      order("id DESC").
+      where(:status => @ticket_status).
+      limit(@ticket_limit).
+      offset(@ticket_offset)
       
-    page = 0 if @ticket_count == 0
+    @page = 0 if @ticket_count == 0
     
-    # @tickets ||= Ticket.all
     respond_with({
-        :page          => page,
+        :page          => @page,
         :tickets       => @tickets,
         :total_tickets => @ticket_count,
         :per_page      => @ticket_limit
@@ -42,7 +26,21 @@ class TicketsController < ApplicationController
   end
 
   def search
+    @ticket_count = Ticket.where("title LIKE ? OR message LIKE ?", "%#{@search_term}%", "%#{@search_term}%").count
+
+    @tickets = Ticket.includes(:ticketable).
+      where("title LIKE ? OR message LIKE ?", "%#{@search_term}%", "%#{@search_term}%").
+      limit(@ticket_limit).
+      offset(@ticket_offset)
+
+    @page = 0 if @ticket_count == 0
     
+    respond_with({
+        :page          => @page,
+        :tickets       => @tickets,
+        :total_tickets => @ticket_count,
+        :per_page      => @ticket_limit
+    }.to_json(:include => :ticketable))
   end
   
   def show
@@ -95,6 +93,14 @@ class TicketsController < ApplicationController
 
   private
 
+  def set_pagination_details
+    @page          = (params[:page] || 1).to_i
+    @ticket_limit  = 5
+    @ticket_offset = (@page * @ticket_limit) - @ticket_limit
+    @ticket_status = params[:status] || "open"
+    @search_term   = params[:term]
+  end
+  
   def operating_user
     current_user || current_admin
   end

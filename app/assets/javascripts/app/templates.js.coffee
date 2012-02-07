@@ -1,5 +1,6 @@
 App.Templates =
 
+
   NewTicket: """
     <h2>What are we talking about here?</h2>
     <div class='field'>
@@ -16,26 +17,13 @@ App.Templates =
     </div>
   """
 
-  OpenTicket: """
-    <div class='open-ticket'>
+  TicketListItem: """
       <div class='title'>
         <a href='#tickets/{{ id }}'>{{ title }}</a>
       </div>
       <div class='meta'>
         by <span class='user'>{{ user_name }}</span> at <span class='posted_at' title='{{ posted_at }}'>{{ posted_at }}</span>
       </div>
-    </div>
-  """
-
-  ClosedTicket: """
-    <div class='closed-ticket'>
-      <div class='title'>
-        <a href='#tickets/{{ id }}'>{{ title }}</a>
-      </div>
-      <div class='meta'>
-        by <span class='user'>{{ user_name }}</span> at <span class='posted_at' title='{{ posted_at }}'>{{ posted_at }}</span>
-      </div>
-    </div>
   """
 
   Search: "<input type='text' class='search-keyword'/>"

@@ -5,6 +5,8 @@ VoicedOpen::Application.routes.draw do
   root :to => "main#index"
 
   resources :settings
+
+  match "tickets/search" => "tickets#search"
   
   resources :tickets, :except => [:edit] do
     resources :activities, :except => [:edit, :show]

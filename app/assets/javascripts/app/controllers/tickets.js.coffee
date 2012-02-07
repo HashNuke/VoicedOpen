@@ -37,7 +37,7 @@ class App.Controllers.Tickets
   @search_tickets: (view_handler, term, page)->
     tickets = new App.Collections.Tickets({search: true})
     tickets.fetch({
-      data: $.param({term: term}),
+      data: $.param({term: term, page: page}),
       success: ()->
         ticket_list = new App.Views.SearchList({collection: tickets, term: term, page: page})
         view_handler.show_view ticket_list

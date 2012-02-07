@@ -7,10 +7,11 @@ class App.Views.TicketListNav extends Backbone.View
     @collection = options.collection
     @nav_term   = options.ticket_status if options.ticket_status
     @nav_term   = "search/#{options.search_term}" if options.search_term
-    console.log "initializes ticket list nav"
+    console.log "initialized ticket list nav"
 
 
   render: ()->
+    console.log @collection
     current_page = @collection.current_page
     total_pages  = @collection.total_pages()
 

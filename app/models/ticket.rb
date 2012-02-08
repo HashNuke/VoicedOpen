@@ -44,5 +44,38 @@ class Ticket < ActiveRecord::Base
         }
       })
   end
+
+
+  # TODO move the loop to the mailer
+  def notify_participants(activity)
+    actor = activity.actable
+
+    unique_participants = participants
+    unique_participants.delete([actor.id, actor.class.name])
+
+    unique_participants.each do |participant_info|
+      participant_id, participant_class = participant_info
+      participant = participant_class.constantize.find(participant_id)
+      NotificationMailer.activity_on_ticket(self, activity, actor, participant).deliver if participant
+    end
+  end
+
+
+  def participants
+    poster_info = [self.ticketable_id, self.ticketable_type]
+    ticket_participants = [poster_info]
+    
+    actors.each_pair do |actor_info, activity_count|
+      ticket_participants.push(actor_info)
+    end
+
+    ticket_participants.uniq!
+  end
+
+  private
+
+  def actors
+    actors = self.activities.group(:actable_id, :actable_type).count
+  end
   
 end

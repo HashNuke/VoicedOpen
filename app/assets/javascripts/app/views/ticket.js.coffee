@@ -9,21 +9,29 @@ class App.Views.Ticket extends Backbone.View
 
 
   events:
-    "click .status": "toggle_ticket_status"
+    "click .status"      : "toggle_ticket_status"
+    "click .edit-button" : "show_edit_form"
+    "click .save-button" : "save_ticket"
 
 
   toggle_ticket_status: ()->
     return if not App.Helpers.User.can_operate_ticket(@model)
 
+    @blick_interval_id = setInterval(()->
+      $(@el).find(".status").fadeOut().fadeIn()
+    ,2000)
+
     if @model.get("status") == "open"
       @model.save({status: "closed"}, {
         success: ()=>
+          clearInterval(@blick_interval_id)
           App.Helpers.TicketStatus.set_to_closed()
           @activity_list.refresh_list()
       })
     else if @model.get("status") == "closed"
       @model.save({status: "open"}, {
         success: ()=>
+          clearInterval(@blick_interval_id)
           App.Helpers.TicketStatus.set_to_open()
           @activity_list.refresh_list()
       })
@@ -51,5 +59,29 @@ class App.Views.Ticket extends Backbone.View
         if App.Helpers.User.is_logged_in()
           new_comment_view = new App.Views.NewComment({ticket_id: @model.get('id'), activities_list: @activity_list})
           $(@el).append(new_comment_view.render().el)
+
+          @display_edit_button()
     })
     @
+
+  display_edit_button: ()->
+    $(@el).find(".edit-button").show() if App.Helpers.User.can_operate_ticket(@model)
+
+  show_edit_form: ()->
+    $(@el).find(".ticket-details").hide()
+    $('.ticket-form .title-field').val(@model.get('title'))
+    $('.ticket-form .message-field').val(@model.get('message'))
+    $(@el).find(".ticket-form").show()
+
+  hide_edit_form: ()->
+    $(@el).find(".ticket-form").hide()
+    $(@el).find(".ticket-details").show()
+
+  save_ticket: ()->
+    title   = $('.ticket-form .title-field').val()
+    message = $('.ticket-form .message-field').val()
+
+    @model.save({title: title, message: message}, {
+      success: ()=>
+        @hide_edit_form()
+    })

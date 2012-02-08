@@ -19,7 +19,7 @@ App.Templates =
 
   TicketListItem: """
       <div class='title'>
-        <a href='#tickets/{{ id }}'>{{ title }}</a>
+        <span class='ticket_id'>{{id}}:</span> <a href='#tickets/{{ id }}'>{{ title }}</a>
       </div>
       <div class='meta'>
         by <span class='user'>{{ user_name }}</span> <span class='posted_at' title='{{ posted_at }}'>{{ posted_at }}</span>
@@ -29,13 +29,28 @@ App.Templates =
   Search: "<input type='text' class='search-keyword'/>"
   Ticket: """
     <div class='ticket-details-wrapper'>
+      <div class='ticket-form'>
+        <div class='field'>
+          Title:<br/>
+          <input type='text' class='title-field'/>
+        </div>
+
+        <div class='field'>
+          Message:<br/>
+          <textarea class='message-field'></textarea>
+        </div>
+        <div class='actions'>
+          <input type='submit' class='save-button' value='save'/>
+        </div>
+      </div>
+
       <div class='ticket-details'>
         <div class='title'>
           <span class='status {{status}}'>{{ status }}</span>
-          {{ title }}
+          <span class='ticket_id'>{{id}}:</span> {{ title }}
         </div>
         <div class='meta'>
-          <span class='user'>{{ user_name }}</span> <span class='posted_at' title='{{ posted_at }}'>{{ posted_at }}</span>
+          <span class='user'>{{ user_name }}</span> <span class='posted_at' title='{{ posted_at }}'>{{ posted_at }}</span> <span class='edit-button'>Edit</span>
         </div>
         <div class='message'>{{ message }}</div>
       </div>
@@ -61,7 +76,7 @@ App.Templates =
     <div class='activity'>
       <h2>Post a comment</h2>
       <textarea class='new-comment-message'></textarea>
-      <div class='actions'><input type='submit' class='submit'/></div>
+      <div class='actions'><input type='submit' value='post' class='submit'/></div>
     </div>
   """
 

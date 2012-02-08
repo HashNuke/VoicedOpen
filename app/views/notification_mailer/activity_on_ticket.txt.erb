@@ -1,1 +1,9 @@
-Activity on ticket <%= "#tickets/#{@ticket.id}" %>
+<%= @mail_subject %>
+
+<%- if @activity.action == "comment" %>
+"""
+<%= @activity.message %>
+"""
+<%- end %>
+
+View ticket at <%= "#{ENV['PUBLIC_URL']}#tickets/#{@ticket.to_param}" %>

@@ -9,5 +9,4 @@ class App.Controllers.Settings
       $(".sidebar-description").html setting.get('value')
 
       $(".sidebar .content .actions .edit-setting").show() if App.Helpers.User.current_user().scope == "Admin"
-
     })

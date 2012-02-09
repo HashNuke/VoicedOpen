@@ -29,7 +29,7 @@ class Ticket < ActiveRecord::Base
   def publish_bushido_event(status)
     ticketable = self.ticketable
 
-    human_message = "#{ticketable.first_name} #{ticketable.last_name} opened a ticket ##{self.id}"
+    human_message = "#{ticketable.first_name} #{ticketable.last_name} opened ticket ##{self.id}"
     human_message = "#{ticketable.first_name} #{ticketable.last_name} closed ticket ##{self.id}" if status == "closed"
     
     ::Bushido::Event.publish({

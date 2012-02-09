@@ -1,5 +1,6 @@
 class App.Models.Setting extends Backbone.Model
-  urlRoot: "/settings"
+  url: ()->
+    "/settings/#{@get('slug')}"
 
   initialize: ()->
     console.log "initialized setting"

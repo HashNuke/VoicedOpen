@@ -4,8 +4,8 @@ class App.Views.Setting extends Backbone.View
   tag: "div"
 
   events:
-    "click .update-setting": "update_setting"
-    "click .sidebar-desc"  : "show_form"
+    "click .save-setting" : "update_setting"
+    "click .edit-setting"  : "show_form"
 
   initialize: ()->
     console.log "initialized setting view"
@@ -17,18 +17,20 @@ class App.Views.Setting extends Backbone.View
     @
 
   update_setting: ()->
-    console.log $(".new-sidebar-desc").val()
-    @model.set()
-    @model.save({value: $(".new-sidebar-desc").val()}, {success: ()=>
-      $(".update-form").hide()
-      $(".sidebar-desc").html($(".new-sidebar-desc").val())
-      $(".sidebar-desc").show()
-      console.log "saved!"
+    console.log $(".sidebar-description-field").val()
+    @model.save({value: $(".sidebar-description-field").val()}, {
+      success: ()=>
+        $(".sidebar-description-form").hide()
+        $(".sidebar-description").html($(".sidebar-description-field").val())
+        $(".sidebar-description").show()
+        $(@el).find(".edit-setting").show()
+        console.log "saved!"
     })
 
 
   show_form: ()->
     if App.Helpers.User.current_user().scope == "Admin"
-      $(".new-sidebar-desc").val($(".sidebar-desc").html())
-      $(".update-form").show()
-      $(".sidebar-desc").hide()
+      $(".sidebar-description-field").val($(".sidebar-description").html())
+      $(@el).find(".edit-setting").hide()
+      $(".sidebar-description-form").show()
+      $(".sidebar-description").hide()

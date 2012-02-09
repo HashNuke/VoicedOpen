@@ -3,18 +3,13 @@ class SettingsController < ApplicationController
   before_filter :authenticate_admin!, :except => [:show]
   respond_to :json
   
-  def index
-    @setting = Setting.find_by_slug "sidebar_description"
-    respond_with @setting
-  end
-
   def show
-    setting = Setting.find(params[:id])
+    setting = Setting.find_by_slug(params[:id])
     respond_with setting
   end
   
   def update
-    setting = Setting.find(params[:id])
+    setting = Setting.find_by_slug(params[:id])
 
     if setting.update_attributes(params[:setting])
       respond_with setting

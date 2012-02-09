@@ -81,9 +81,14 @@ App.Templates =
   """
 
   Setting: """
-    <div class='update-form'>
-      <textarea class='new-sidebar-desc'></textarea>
-      <input type='button' class='update-setting' value='submit'/>
+    <div class='sidebar-description-form'>
+      <textarea class='sidebar-description-field'></textarea>
+      <div class='actions'>
+        <input type='submit' class='save-setting' value='save'/>
+      </div>
     </div>
-    <div class='sidebar-desc'></div>
+    <div class='sidebar-description'></div>
+    <div class='actions'>
+      <input type='submit' class='edit-setting' value='edit'/>
+    </div>
   """
